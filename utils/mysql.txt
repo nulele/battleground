@@ -1,0 +1,7 @@
+create database battleground;
+
+create user battleground@localhost identified by 'battleground';
+
+grant all on battleground.* to battleground@localhost;
+
+flush privileges;
