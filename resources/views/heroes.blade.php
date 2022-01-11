@@ -19,16 +19,16 @@
                                         <thead>
                                         <tr>
                                             <th class="p-2">
-                                                Nome
+                                                <a href="{{ route('heroes', ['sort' => 'name', 'direction' => $direction]) }}">Nome</a>
                                             </th>
                                             <th class="p-2">
-                                                Energia
+                                                <a href="{{ route('heroes', ['sort' => 'energy', 'direction' => $direction]) }}">Energia</a>
                                             </th>
                                             <th class="p-2">
-                                                Attacco
+                                                <a href="{{ route('heroes', ['sort' => 'attack', 'direction' => $direction]) }}">Attacco</a>
                                             </th>
                                             <th class="p-2">
-                                                Difesa
+                                                <a href="{{ route('heroes', ['sort' => 'defense', 'direction' => $direction]) }}">Difesa</a>
                                             </th>
                                             <th class="p-2">
                                                 Azioni
@@ -57,11 +57,16 @@
                                         @endforeach
                                         </tbody>
                                     </table>
+
                                 </div>
+
+                                <div class="py-2">
+                                    {{ $heroes->links() }}
+                                </div>
+
                             </div>
                         </div>
                     </div>
-
 
                 </div>
             </div>

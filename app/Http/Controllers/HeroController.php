@@ -10,12 +10,19 @@ class HeroController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        $direction = $request->direction == 'desc' ? 'asc' : 'desc';
+
         return view('heroes', [
-            'heroes' => Hero::query()->get(),
+            'heroes' => Hero::query()
+                ->orderBy($request->sort, $request->direction)
+                ->paginate(5)
+                ->appends(['sort' => $request->sort, 'direction' => $request->direction]),
+            'direction' => $direction,
         ]);
     }
 
