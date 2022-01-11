@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hero;
 use Illuminate\Http\Request;
 
 class HeroController extends Controller
@@ -9,11 +10,13 @@ class HeroController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        //
+        return view('heroes', [
+            'heroes' => Hero::query()->get(),
+        ]);
     }
 
     /**

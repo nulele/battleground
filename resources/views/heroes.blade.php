@@ -9,7 +9,62 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're in the Heroes page!
+
+                    <div class="flex flex-col">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+                                    <div class="p-6">
+                                        <p class="text-xl">Eroi</p>
+                                    </div>
+
+                                    <table class="w-full table-auto">
+                                        <thead>
+                                        <tr>
+                                            <th class="p-2">
+                                                Nome
+                                            </th>
+                                            <th class="p-2">
+                                                Energia
+                                            </th>
+                                            <th class="p-2">
+                                                Attacco
+                                            </th>
+                                            <th class="p-2">
+                                                Difesa
+                                            </th>
+                                            <th class="p-2">
+                                                Azioni
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="p-2 text-center">
+                                                Mario
+                                            </td>
+                                            <td class="p-2 text-center">
+                                                4
+                                            </td>
+                                            <td class="p-2 text-center">
+                                                3
+                                            </td>
+                                            <td class="p-2 text-center">
+                                                3
+                                            </td>
+                                            <td class="p-2 text-center">
+                                                <a href="#">Modifica</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
