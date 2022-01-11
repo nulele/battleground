@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HeroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/heroes', function () {
-    return view('heroes');
-})->middleware(['auth'])->name('heroes');
+Route::get('/heroes', [HeroController::class, 'index'])->middleware(['auth'])->name('heroes');
 
 require __DIR__.'/auth.php';

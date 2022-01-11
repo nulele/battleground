@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Heroes') }}
+            {{ __('Eroi') }}
         </h2>
     </x-slot>
 
@@ -14,10 +14,6 @@
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-
-                                    <div class="p-6">
-                                        <p class="text-xl">Eroi</p>
-                                    </div>
 
                                     <table class="w-full table-auto">
                                         <thead>
@@ -40,23 +36,25 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($heroes as $hero)
                                         <tr>
                                             <td class="p-2 text-center">
-                                                Mario
+                                                {{ $hero->name }}
                                             </td>
                                             <td class="p-2 text-center">
-                                                4
+                                                {{ $hero->energy }}
                                             </td>
                                             <td class="p-2 text-center">
-                                                3
+                                                {{ $hero->attack }}
                                             </td>
                                             <td class="p-2 text-center">
-                                                3
+                                                {{ $hero->defense }}
                                             </td>
                                             <td class="p-2 text-center">
-                                                <a href="#">Modifica</a>
+
                                             </td>
                                         </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
