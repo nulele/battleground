@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HeroRequest;
 use App\Models\Hero;
 use Illuminate\Http\Request;
 
@@ -45,15 +46,8 @@ class HeroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HeroRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'energy' => 'required|numeric|min:2|max:10',
-            'attack' => 'required|numeric|min:2|max:10',
-            'defense' => 'required|numeric|min:2|max:10',
-        ]);
-
         Hero::query()->create([
             'name' => $request->name,
             'energy' => $request->energy,
@@ -106,7 +100,7 @@ class HeroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(HeroRequest $request, $id)
     {
         if(!$hero = Hero::query()->find($id)) {
             return back()->with([
@@ -114,13 +108,6 @@ class HeroController extends Controller
                 'message' => 'Eroe non trovato',
             ]);
         }
-
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'energy' => 'required|numeric|min:2|max:10',
-            'attack' => 'required|numeric|min:2|max:10',
-            'defense' => 'required|numeric|min:2|max:10',
-        ]);
 
         $hero->update([
             'name' => $request->name,
