@@ -59,7 +59,7 @@
                                             </td>
                                             <td class="p-2 text-center">
                                                 <a href="{{ route('heroes.edit', $hero->id) }}">Modifica</a>
-                                                <form class="inline-flex" method="POST" action="{{ route('heroes.delete', $hero->id) }}">
+                                                <form class="inline-flex" method="POST" action="{{ route('heroes.destroy', $hero->id) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button onclick="return confirm('Confermi di voler eliminare?')" type="submit">Elimina</button>
