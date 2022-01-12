@@ -15,14 +15,15 @@ class HeroController extends Controller
      */
     public function index(Request $request)
     {
-        $direction = $request->direction == 'desc' ? 'asc' : 'desc';
+        $sort = $request->sort ?: 'name';
+        $direction = $request->direction ?: 'desc';
 
-        return view('heroes', [
+        return view('heroes.index', [
             'heroes' => Hero::query()
-                ->orderBy($request->sort, $request->direction)
+                ->orderBy($sort, $direction)
                 ->paginate(5)
-                ->appends(['sort' => $request->sort, 'direction' => $request->direction]),
-            'direction' => $direction,
+                ->appends(['sort' => $sort, 'direction' => $direction]),
+            'direction' => $request->direction == 'desc' ? 'asc' : 'desc',
         ]);
     }
 
@@ -33,7 +34,9 @@ class HeroController extends Controller
      */
     public function create()
     {
-        //
+        return view('heroes.create', [
+
+        ]);
     }
 
     /**
@@ -44,16 +47,26 @@ class HeroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Hero::query()->create([
+            'name' => $request->name,
+            'energy' => $request->energy,
+            'attack' => $request->attack,
+            'defense' => $request->defense,
+        ]);
+
+        return redirect()->route('heroes.index')->with([
+            'status' => 'success',
+            'message' => 'Eroe creato',
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         //
     }
@@ -61,12 +74,22 @@ class HeroController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        if(!$hero = Hero::query()->find($id)) {
+            return back()->with([
+                'status' => 'error',
+                'message' => 'Eroe non trovato',
+            ]);
+        }
+
+        return view('heroes.edit', [
+            'hero' => $hero,
+        ]);
     }
 
     /**
@@ -78,7 +101,24 @@ class HeroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!$hero = Hero::query()->find($id)) {
+            return back()->with([
+                'status' => 'error',
+                'message' => 'Eroe non trovato',
+            ]);
+        }
+
+        $hero->update([
+            'name' => $request->name,
+            'energy' => $request->energy,
+            'attack' => $request->attack,
+            'defense' => $request->defense,
+        ]);
+
+        return redirect()->route('heroes.index')->with([
+            'status' => 'success',
+            'message' => 'Eroe modificato',
+        ]);
     }
 
     /**
@@ -89,6 +129,18 @@ class HeroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$hero = Hero::query()->find($id)) {
+            return back()->with([
+                'status' => 'error',
+                'message' => 'Eroe non trovato',
+            ]);
+        }
+
+        $hero->delete($id);
+
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Eroe eliminato',
+        ]);
     }
 }

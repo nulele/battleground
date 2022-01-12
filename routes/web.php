@@ -22,6 +22,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/heroes', [HeroController::class, 'index'])->middleware(['auth'])->name('heroes');
+Route::get('/heroes', [HeroController::class, 'index'])->middleware(['auth'])->name('heroes.index');
+Route::get('/heroes/create', [HeroController::class, 'create'])->middleware(['auth'])->name('heroes.create');
+Route::post('/heroes', [HeroController::class, 'store'])->middleware(['auth'])->name('heroes.store');
+Route::get('/heroes/{id}/edit', [HeroController::class, 'edit'])->middleware(['auth'])->name('heroes.edit');
+Route::put('/heroes/{id}', [HeroController::class, 'update'])->middleware(['auth'])->name('heroes.update');
+Route::delete('/heroes/{id}', [HeroController::class, 'destroy'])->middleware(['auth'])->name('heroes.delete');
 
 require __DIR__.'/auth.php';
