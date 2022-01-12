@@ -47,6 +47,13 @@ class HeroController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'energy' => 'required|numeric|min:2|max:10',
+            'attack' => 'required|numeric|min:2|max:10',
+            'defense' => 'required|numeric|min:2|max:10',
+        ]);
+
         Hero::query()->create([
             'name' => $request->name,
             'energy' => $request->energy,
@@ -107,6 +114,13 @@ class HeroController extends Controller
                 'message' => 'Eroe non trovato',
             ]);
         }
+
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'energy' => 'required|numeric|min:2|max:10',
+            'attack' => 'required|numeric|min:2|max:10',
+            'defense' => 'required|numeric|min:2|max:10',
+        ]);
 
         $hero->update([
             'name' => $request->name,
