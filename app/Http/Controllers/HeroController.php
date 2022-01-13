@@ -18,7 +18,7 @@ class HeroController extends Controller
     public function index(Request $request)
     {
         $sort = $request->sort ?: 'name';
-        $direction = $request->direction ?: 'desc';
+        $direction = $request->direction ?: 'asc';
 
         return view('heroes.index', [
             'heroes' => Hero::query()
@@ -38,8 +38,10 @@ class HeroController extends Controller
      */
     public function create()
     {
-        return view('heroes.create', [
+        $clans = Clan::query()->orderBy('name')->get();
 
+        return view('heroes.create', [
+            'clans' => $clans,
         ]);
     }
 
@@ -92,8 +94,11 @@ class HeroController extends Controller
             ]);
         }
 
+        $clans = Clan::query()->orderBy('name')->get();
+
         return view('heroes.edit', [
             'hero' => $hero,
+            'clans' => $clans,
         ]);
     }
 
