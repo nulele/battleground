@@ -14,7 +14,7 @@ class AddClanIdToHeroesTable extends Migration
     public function up()
     {
         Schema::table('heroes', function (Blueprint $table) {
-            $table->unsignedBigInteger('clan_id')->after('id');
+            $table->unsignedBigInteger('clan_id')->nullable()->after('id');
         });
     }
 
