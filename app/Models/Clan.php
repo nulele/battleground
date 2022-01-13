@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hero extends Model
+class Clan extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function clan()
+    public function heroes()
     {
-        return $this->belongsTo(Clan::class);
+        return $this->hasMany(Hero::class);
     }
 }
