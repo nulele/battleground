@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::post('heroes/search', [HeroController::class, 'index'])->name('heroes.search');
     Route::resource('heroes', HeroController::class)->parameters([
         'heroes' => 'id'
     ]);

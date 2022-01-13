@@ -22,6 +22,15 @@
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
+                                    <form method="POST" action="{{ route('heroes.search') }}">
+                                        @csrf
+                                        <input placeholder="Cerca tra gli Eroi..." style="width:90%" class="shadow border-gray-200" name="search" id="search" value="{{ $search ?? null }}" />
+                                        <button type="submit">Cerca</button>
+                                        @if(isset($search))
+                                        <a href="{{ route('heroes.index') }}">Annulla</a>
+                                        @endif
+                                    </form>
+
                                     <table class="w-full table-fixed">
                                         <thead>
                                         <tr>

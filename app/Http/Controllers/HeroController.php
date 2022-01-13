@@ -19,15 +19,23 @@ class HeroController extends Controller
     {
         $sort = $request->sort ?: 'name';
         $direction = $request->direction ?: 'asc';
+        $search = $request->search;
 
         return view('heroes.index', [
             'heroes' => Hero::query()
                 ->select('heroes.*')
                 ->leftJoin('clans', 'clans.id', '=', 'heroes.clan_id')
+                ->when($search, function ($query, $search) {
+                    return $query->where(function ($query) use ($search) {
+                        return $query->orWhere('heroes.name', 'like', "%$search%")
+                            ->orWhere('clans.name', 'like', "%$search%");
+                    });
+                })
                 ->orderBy($sort, $direction)
                 ->paginate(5)
-                ->appends(['sort' => $sort, 'direction' => $direction]),
+                ->appends(['sort' => $sort, 'direction' => $direction, 'search' => $search]),
             'direction' => $request->direction == 'desc' ? 'asc' : 'desc',
+            'search' => $search
         ]);
     }
 
