@@ -26,16 +26,19 @@
                                         <thead>
                                         <tr>
                                             <th class="p-2" width="200px">
-                                                <a href="{{ route('heroes.index', ['sort' => 'name', 'direction' => $direction]) }}">{{ __('heroes.name') }}</a>
+                                                <a href="{{ route('heroes.index', ['sort' => 'heroes.name', 'direction' => $direction]) }}">{{ __('heroes.name') }}</a>
+                                            </th>
+                                            <th class="p-2" >
+                                                <a href="{{ route('heroes.index', ['sort' => 'clans.name', 'direction' => $direction]) }}">{{ __('heroes.clan') }}</a>
                                             </th>
                                             <th class="p-2">
-                                                <a href="{{ route('heroes.index', ['sort' => 'energy', 'direction' => $direction]) }}">{{ __('heroes.energy') }}</a>
+                                                <a href="{{ route('heroes.index', ['sort' => 'heroes.energy', 'direction' => $direction]) }}">{{ __('heroes.energy') }}</a>
                                             </th>
                                             <th class="p-2">
-                                                <a href="{{ route('heroes.index', ['sort' => 'attack', 'direction' => $direction]) }}">{{ __('heroes.attack') }}</a>
+                                                <a href="{{ route('heroes.index', ['sort' => 'heroes.attack', 'direction' => $direction]) }}">{{ __('heroes.attack') }}</a>
                                             </th>
                                             <th class="p-2">
-                                                <a href="{{ route('heroes.index', ['sort' => 'defense', 'direction' => $direction]) }}">{{ __('heroes.defense') }}</a>
+                                                <a href="{{ route('heroes.index', ['sort' => 'heroes.defense', 'direction' => $direction]) }}">{{ __('heroes.defense') }}</a>
                                             </th>
                                             <th class="p-2">
                                                 {{ __('crud.actions') }}
@@ -47,6 +50,9 @@
                                         <tr>
                                             <td class="p-2 text-center">
                                                 {{ $hero->name }}
+                                            </td>
+                                            <td class="p-2 text-center">
+                                                {{ $hero->clan ? $hero->clan->name : null }}
                                             </td>
                                             <td class="p-2 text-center">
                                                 {{ $hero->energy }}

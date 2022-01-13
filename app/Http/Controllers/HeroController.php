@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HeroRequest;
+use App\Models\Clan;
 use App\Models\Hero;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,8 @@ class HeroController extends Controller
 
         return view('heroes.index', [
             'heroes' => Hero::query()
+                ->select('heroes.*')
+                ->leftJoin('clans', 'clans.id', '=', 'heroes.clan_id')
                 ->orderBy($sort, $direction)
                 ->paginate(5)
                 ->appends(['sort' => $sort, 'direction' => $direction]),
