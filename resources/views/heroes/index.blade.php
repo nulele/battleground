@@ -25,12 +25,12 @@
                                     <table class="w-full table-fixed">
                                         <thead>
                                         <tr>
-                                            <th class="p-2" width="200px">
+                                            <th class="p-2" width="400px">
                                                 <a href="{{ route('heroes.index', ['sort' => 'heroes.name', 'direction' => $direction]) }}">{{ __('heroes.name') }}</a>
                                             </th>
-                                            <th class="p-2" >
-                                                <a href="{{ route('heroes.index', ['sort' => 'clans.name', 'direction' => $direction]) }}">{{ __('heroes.clan') }}</a>
-                                            </th>
+{{--                                            <th class="p-2" >--}}
+{{--                                                <a href="{{ route('heroes.index', ['sort' => 'clans.name', 'direction' => $direction]) }}">{{ __('heroes.clan') }}</a>--}}
+{{--                                            </th>--}}
                                             <th class="p-2">
                                                 <a href="{{ route('heroes.index', ['sort' => 'heroes.energy', 'direction' => $direction]) }}">{{ __('heroes.energy') }}</a>
                                             </th>
@@ -49,11 +49,11 @@
                                         @foreach($heroes as $hero)
                                         <tr>
                                             <td class="p-2 text-center">
-                                                {{ $hero->name }}
+                                                {{ $hero->fullname }}
                                             </td>
-                                            <td class="p-2 text-center">
-                                                {{ $hero->clan ? $hero->clan->name : null }}
-                                            </td>
+{{--                                            <td class="p-2 text-center">--}}
+{{--                                                {{ $hero->clan ? $hero->clan->name : null }}--}}
+{{--                                            </td>--}}
                                             <td class="p-2 text-center">
                                                 {{ $hero->energy }}
                                             </td>

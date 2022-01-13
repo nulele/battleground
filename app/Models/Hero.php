@@ -15,4 +15,9 @@ class Hero extends Model
     {
         return $this->belongsTo(Clan::class);
     }
+
+    public function getFullnameAttribute()
+    {
+        return $this->name . ($this->clan ? ' (' . $this->clan->name . ')' : null);
+    }
 }
