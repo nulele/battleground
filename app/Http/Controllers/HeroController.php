@@ -49,6 +49,7 @@ class HeroController extends Controller
     public function store(HeroRequest $request)
     {
         Hero::query()->create([
+            'clan_id' => $request->clan_id,
             'name' => $request->name,
             'energy' => $request->energy,
             'attack' => $request->attack,
@@ -110,6 +111,7 @@ class HeroController extends Controller
         }
 
         $hero->update([
+            'clan_id' => $request->clan_id,
             'name' => $request->name,
             'energy' => $request->energy,
             'attack' => $request->attack,

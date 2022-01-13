@@ -37,6 +37,17 @@
                                         @method('PUT')
 
                                         <div>
+                                            <label>{{ __('heroes.clan') }}</label>
+                                            <select name="clan_id">
+                                                <option value="">- Seleziona un valore -</option>
+                                                <option value="1">Blue</option>
+                                                <option value="2">DarkGreen</option>
+                                                <option value="3">Sienna</option>
+                                                <option value="4">PaleVioletRed</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
                                             <label>{{ __('heroes.name') }}</label>
                                             <input name="name" type="text" value="{{ old('name', $hero->name) }}">
                                         </div>
