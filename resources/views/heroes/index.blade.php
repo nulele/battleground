@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Eroi') }}
-            <a href="{{ route('heroes.create') }}">Crea</a>
+            {{ __('heroes.heroes') }}
+            <a href="{{ route('heroes.create') }}">{{ __('crud.create') }}</a>
         </h2>
     </x-slot>
 
@@ -26,19 +26,19 @@
                                         <thead>
                                         <tr>
                                             <th class="p-2" width="200px">
-                                                <a href="{{ route('heroes.index', ['sort' => 'name', 'direction' => $direction]) }}">Nome</a>
+                                                <a href="{{ route('heroes.index', ['sort' => 'name', 'direction' => $direction]) }}">{{ __('heroes.name') }}</a>
                                             </th>
                                             <th class="p-2">
-                                                <a href="{{ route('heroes.index', ['sort' => 'energy', 'direction' => $direction]) }}">Energia</a>
+                                                <a href="{{ route('heroes.index', ['sort' => 'energy', 'direction' => $direction]) }}">{{ __('heroes.energy') }}</a>
                                             </th>
                                             <th class="p-2">
-                                                <a href="{{ route('heroes.index', ['sort' => 'attack', 'direction' => $direction]) }}">Attacco</a>
+                                                <a href="{{ route('heroes.index', ['sort' => 'attack', 'direction' => $direction]) }}">{{ __('heroes.attack') }}</a>
                                             </th>
                                             <th class="p-2">
-                                                <a href="{{ route('heroes.index', ['sort' => 'defense', 'direction' => $direction]) }}">Difesa</a>
+                                                <a href="{{ route('heroes.index', ['sort' => 'defense', 'direction' => $direction]) }}">{{ __('heroes.defense') }}</a>
                                             </th>
                                             <th class="p-2">
-                                                Azioni
+                                                {{ __('crud.actions') }}
                                             </th>
                                         </tr>
                                         </thead>
@@ -58,11 +58,11 @@
                                                 {{ $hero->defense }}
                                             </td>
                                             <td class="p-2 text-center">
-                                                <a href="{{ route('heroes.edit', $hero->id) }}">Modifica</a>
+                                                <a href="{{ route('heroes.edit', $hero->id) }}">{{ __('crud.edit') }}</a>
                                                 <form class="inline-flex" method="POST" action="{{ route('heroes.destroy', $hero->id) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button onclick="return confirm('Confermi di voler eliminare?')" type="submit">Elimina</button>
+                                                    <button onclick="return confirm('Confermi di voler eliminare?')" type="submit">{{ __('crud.delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

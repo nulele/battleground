@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Eroi') }} - Crea
-            <a href="{{ route('heroes.index') }}">Indietro</a>
+            {{ __('heroes.heroes') }} - {{ __('crud.create') }}
+            <a href="{{ route('heroes.index') }}">{{ __('crud.back') }}</a>
         </h2>
     </x-slot>
 
@@ -36,22 +36,22 @@
                                         @csrf
 
                                         <div>
-                                            <label>Nome</label>
+                                            <label>{{ __('heroes.name') }}</label>
                                             <input name="name" type="text" value="{{ old('name') }}">
                                         </div>
 
                                         <div>
-                                            <label>Energia</label>
+                                            <label>{{ __('heroes.energy') }}</label>
                                             <input name="energy" type="text" value="{{ old('energy') }}">
                                         </div>
 
                                         <div>
-                                            <label>Attacco</label>
+                                            <label>{{ __('heroes.attack') }}</label>
                                             <input name="attack" type="text" value="{{ old('attack') }}">
                                         </div>
 
                                         <div>
-                                            <label>Difesa</label>
+                                            <label>{{ __('heroes.defense') }}</label>
                                             <input name="defense" type="text" value="{{ old('defense') }}">
                                         </div>
 

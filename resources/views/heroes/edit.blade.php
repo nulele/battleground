@@ -1,15 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Eroi') }} - Modifica
-            <a href="{{ route('heroes.index') }}">Indietro</a>
+            {{ __('Eroi') }} - {{ __('crud.edit') }}
+            <a href="{{ route('heroes.index') }}">{{ __('crud.back') }}</a>
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+                <div class="p-6 bg-whiteEroi border-b border-gray-200">
 
                     @if (session('status'))
                     <div class="">
@@ -37,26 +37,26 @@
                                         @method('PUT')
 
                                         <div>
-                                            <label>Nome</label>
+                                            <label>{{ __('heroes.name') }}</label>
                                             <input name="name" type="text" value="{{ old('name', $hero->name) }}">
                                         </div>
 
                                         <div>
-                                            <label>Energia</label>
+                                            <label>{{ __('heroes.energy') }}</label>
                                             <input name="energy" type="text" value="{{ old('energy', $hero->energy) }}">
                                         </div>
 
                                         <div>
-                                            <label>Attacco</label>
+                                            <label>{{ __('heroes.attack') }}</label>
                                             <input name="attack" type="text" value="{{ old('attack', $hero->attack) }}">
                                         </div>
 
                                         <div>
-                                            <label>Difesa</label>
+                                            <label>{{ __('heroes.defense') }}</label>
                                             <input name="defense" type="text" value="{{ old('defense', $hero->defense) }}">
                                         </div>
 
-                                        <button type="submit" name="save" >Salva</button>
+                                        <button type="submit" name="save" >{{ __('crud.save') }}</button>
 
                                     </form>
 

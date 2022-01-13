@@ -15,7 +15,7 @@ use App\Http\Controllers\HeroController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware(['auth'])->group(function () {

@@ -56,7 +56,7 @@ class HeroRequest extends FormRequest
         $validator->after(function ($validator) {
             if ($this->energy + $this->attack + $this->defense > 10) {
                 $validator->errors()
-                    ->add('total', 'La somma delle abilità non può essere maggiore di 10')
+                    ->add('total', __('validation.abilities_total'))
                 ;
             }
         });
