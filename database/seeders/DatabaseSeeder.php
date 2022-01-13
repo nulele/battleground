@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             HeroSeeder::class,
+            ClanSeeder::class,
         ]);
     }
 }
