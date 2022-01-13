@@ -40,10 +40,10 @@
                                             <label>{{ __('heroes.clan') }}</label>
                                             <select name="clan_id">
                                                 <option value="">- Seleziona un valore -</option>
-                                                <option value="1">Blue</option>
-                                                <option value="2">DarkGreen</option>
-                                                <option value="3">Sienna</option>
-                                                <option value="4">PaleVioletRed</option>
+                                                <option value="1" {{ $hero->clan_id == 1 ? 'selected' : null }}>Blue</option>
+                                                <option value="2" @if($hero->clan_id == 2) selected @endif>DarkGreen</option>
+                                                <option value="3" @if($hero->clan_id == 3) selected @endif>Sienna</option>
+                                                <option value="4" @if($hero->clan_id == 4) selected @endif>PaleVioletRed</option>
                                             </select>
                                         </div>
 
