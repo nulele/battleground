@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Clan;
+use App\Models\Hero;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -29,6 +30,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('show-clans', function (User $user) {
             return $user->admin;
+        });
+
+        Gate::define('edit-hero-with-attack-five', function (User $user, Hero $hero) {
+            return $user->admin || $hero->attack < 5;
         });
     }
 }

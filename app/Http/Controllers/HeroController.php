@@ -6,6 +6,7 @@ use App\Http\Requests\HeroRequest;
 use App\Models\Clan;
 use App\Models\Hero;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HeroController extends Controller
 {
@@ -95,6 +96,10 @@ class HeroController extends Controller
                 'status' => 'error',
                 'message' => 'Eroe non trovato',
             ]);
+        }
+
+        if (!Gate::allows('edit-hero-with-attack-five', $hero)) {
+            abort(403);
         }
 
         $clans = Clan::query()->orderBy('name')->get();
