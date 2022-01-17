@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ClanController extends Controller
 {
@@ -14,6 +15,10 @@ class ClanController extends Controller
      */
     public function index()
     {
+        if (!Gate::allows('show-clans')) {
+            abort(403);
+        }
+
         return view('clans.index', [
             'clans' => Clan::query()
                 ->orderBy('name', 'desc')

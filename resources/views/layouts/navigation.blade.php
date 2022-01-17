@@ -18,9 +18,11 @@
                     <x-nav-link :href="route('heroes.index')" :active="request()->routeIs('heroes')">
                         {{ __('heroes.heroes') }}
                     </x-nav-link>
+                    @can('show-clans')
                     <x-nav-link :href="route('clans.index')" :active="request()->routeIs('clans')">
                         {{ __('clans.clans') }}
                     </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
