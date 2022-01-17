@@ -8,6 +8,7 @@ use App\Models\Hero;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class HeroController extends Controller
 {
@@ -62,13 +63,16 @@ class HeroController extends Controller
      */
     public function store(HeroRequest $request)
     {
-        Hero::query()->create([
+        $hero = Hero::query()->create([
             'clan_id' => $request->clan_id,
             'name' => $request->name,
             'energy' => $request->energy,
             'attack' => $request->attack,
             'defense' => $request->defense,
         ]);
+
+        Log::info('Creato eroe ' . $hero->id);
+        Log::info('Creato eroe', ['id' => $hero->id]);
 
         return redirect()->route('heroes.index')->with([
             'status' => 'success',
