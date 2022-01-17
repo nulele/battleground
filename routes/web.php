@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\ClanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('heroes/search', [HeroController::class, 'index'])->name('heroes.search');
     Route::resource('heroes', HeroController::class)->parameters([
         'heroes' => 'id'
+    ]);
+
+    Route::resource('clans', ClanController::class)->parameters([
+        'clans' => 'id'
     ]);
 });
 
