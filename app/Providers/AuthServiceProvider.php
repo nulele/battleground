@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Clan;
 use App\Models\Hero;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -34,6 +35,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('edit-hero-with-attack-five', function (User $user, Hero $hero) {
             return $user->admin || $hero->attack < 5;
+        });
+
+        Gate::define('create-hero-at-even-minutes', function (User $user, $minute) {
+            return $user->admin || $minute % 2 == 0;
         });
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HeroRequest;
 use App\Models\Clan;
 use App\Models\Hero;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -42,6 +43,10 @@ class HeroController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('create-hero-at-even-minutes', Carbon::now()->minute)) {
+            abort(403);
+        }
+
         $clans = Clan::query()->orderBy('name')->get();
 
         return view('heroes.create', [
