@@ -27,11 +27,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('heroes/search', [HeroController::class, 'index'])->name('heroes.search');
     Route::resource('heroes', HeroController::class)->parameters([
-        'heroes' => 'id'
+        'hero' => 'id'
     ]);
 
     Route::resource('clans', ClanController::class)->parameters([
-        'clans' => 'id'
+        'clan' => 'id'
     ]);
 });
 

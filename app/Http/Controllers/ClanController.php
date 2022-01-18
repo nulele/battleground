@@ -15,9 +15,10 @@ class ClanController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('show-clans')) {
-            abort(403);
-        }
+        $this->authorize('viewAny', Clan::class);
+//        if (!Gate::allows('show-clans')) {
+//            abort(403);
+//        }
 
         return view('clans.index', [
             'clans' => Clan::query()
@@ -33,7 +34,7 @@ class ClanController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Clan::class);
     }
 
     /**
@@ -44,51 +45,55 @@ class ClanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Clan::class);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Clan $clan
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show($id)
+    public function show(Clan $clan)
     {
-        //
+        $this->authorize('show', $clan);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Clan $clan
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit($id)
+    public function edit(Clan $clan)
     {
-        //
+        $this->authorize('show', $clan);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Clan $clan
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Clan $clan)
     {
-        //
+        $this->authorize('update', $clan);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Clan $clan
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy($id)
+    public function destroy(Clan $clan)
     {
-        //
+        $this->authorize('delete', $clan);
     }
 }

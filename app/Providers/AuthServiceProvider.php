@@ -5,7 +5,8 @@ namespace App\Providers;
 use App\Models\Clan;
 use App\Models\Hero;
 use App\Models\User;
-use Carbon\Carbon;
+use App\Policies\ClanPolicy;
+use App\Policies\HeroPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -17,7 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+         Hero::class => HeroPolicy::class,
+         Clan::class => ClanPolicy::class,
     ];
 
     /**

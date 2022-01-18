@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Log;
 class HeroController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Hero::class);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param Request $request
@@ -45,9 +55,9 @@ class HeroController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('create-hero-at-even-minutes', Carbon::now()->minute)) {
-            abort(403);
-        }
+//        if (!Gate::allows('create-hero-at-even-minutes', Carbon::now()->minute)) {
+//            abort(403);
+//        }
 
         $users = User::query()->where('admin', false)->orderBy('name')->get();
         $clans = Clan::query()->orderBy('name')->get();
@@ -111,9 +121,9 @@ class HeroController extends Controller
             ]);
         }
 
-        if (!Gate::allows('edit-hero-with-attack-five', $hero)) {
-            abort(403);
-        }
+//        if (!Gate::allows('edit-hero-with-attack-five', $hero)) {
+//            abort(403);
+//        }
 
         $users = User::query()->where('admin', false)->orderBy('name')->get();
         $clans = Clan::query()->orderBy('name')->get();

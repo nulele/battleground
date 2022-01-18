@@ -15,10 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (auth()->user()->can('viewAny', \App\Models\Hero::class))
                     <x-nav-link :href="route('heroes.index')" :active="request()->routeIs('heroes')">
                         {{ __('heroes.heroes') }}
                     </x-nav-link>
-                    @can('show-clans')
+                    @endif
+                    @can('viewAny', \App\Models\Clan::class)
                     <x-nav-link :href="route('clans.index')" :active="request()->routeIs('clans')">
                         {{ __('clans.clans') }}
                     </x-nav-link>
