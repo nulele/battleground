@@ -19,7 +19,9 @@ class HeroPolicy
      */
     public function before(User $user, $ability)
     {
-        return $user->admin;
+        if($user->admin) {
+            return true;
+        }
     }
 
     /**
@@ -30,7 +32,7 @@ class HeroPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -42,7 +44,7 @@ class HeroPolicy
      */
     public function view(User $user, Hero $hero)
     {
-        //
+        return $hero->user_id == $user->id;
     }
 
     /**
@@ -53,7 +55,7 @@ class HeroPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -65,7 +67,7 @@ class HeroPolicy
      */
     public function update(User $user, Hero $hero)
     {
-        //
+        return $hero->user_id == $user->id;
     }
 
     /**
@@ -77,7 +79,7 @@ class HeroPolicy
      */
     public function delete(User $user, Hero $hero)
     {
-        //
+        return false;
     }
 
     /**
@@ -89,7 +91,7 @@ class HeroPolicy
      */
     public function restore(User $user, Hero $hero)
     {
-        //
+        return false;
     }
 
     /**
@@ -101,6 +103,6 @@ class HeroPolicy
      */
     public function forceDelete(User $user, Hero $hero)
     {
-        //
+        return false;
     }
 }

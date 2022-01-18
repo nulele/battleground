@@ -26,6 +26,11 @@ class Hero extends Model
         return $this->name . ($this->clan ? ' (' . $this->clan->name . ')' : null);
     }
 
+    public function scopeOfUser($query, $user)
+    {
+        return $query->where('user_id', $user->id);
+    }
+
     public function scopeSearch($query, $search = null)
     {
         return $query->when($search, function ($query, $search) {

@@ -38,6 +38,9 @@ class HeroController extends Controller
         return view('heroes.index', [
             'heroes' => Hero::query()
                 ->select('heroes.*')
+                ->when(!auth()->user()->admin, function ($query) {
+                    $query->ofUser(auth()->user());
+                })
                 ->leftJoin('clans', 'clans.id', '=', 'heroes.clan_id')
                 ->search($search)
                 ->orderBy($sort, $direction)
@@ -109,18 +112,11 @@ class HeroController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Request $request
-     * @param int $id
+     * @param Hero $hero
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request, Hero $hero)
     {
-        if(!$hero = Hero::query()->find($id)) {
-            return back()->with([
-                'status' => 'error',
-                'message' => 'Eroe non trovato',
-            ]);
-        }
-
 //        if (!Gate::allows('edit-hero-with-attack-five', $hero)) {
 //            abort(403);
 //        }
@@ -138,19 +134,12 @@ class HeroController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param HeroRequest $request
+     * @param Hero $hero
      * @return \Illuminate\Http\Response
      */
-    public function update(HeroRequest $request, $id)
+    public function update(HeroRequest $request, Hero $hero)
     {
-        if(!$hero = Hero::query()->find($id)) {
-            return back()->with([
-                'status' => 'error',
-                'message' => 'Eroe non trovato',
-            ]);
-        }
-
         $hero->update([
             'user_id' => $request->user_id,
             'clan_id' => $request->clan_id,
@@ -169,19 +158,12 @@ class HeroController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Hero $hero
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Hero $hero)
     {
-        if(!$hero = Hero::query()->find($id)) {
-            return back()->with([
-                'status' => 'error',
-                'message' => 'Eroe non trovato',
-            ]);
-        }
-
-        $hero->delete($id);
+        $hero->delete();
 
         return back()->with([
             'status' => 'success',

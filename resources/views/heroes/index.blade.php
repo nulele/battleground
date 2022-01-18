@@ -81,11 +81,13 @@
                                             </td>
                                             <td class="p-2 text-center">
                                                 <a href="{{ route('heroes.edit', $hero->id) }}">{{ __('crud.edit') }}</a>
+                                                @can('delete', $hero)
                                                 <form class="inline-flex" method="POST" action="{{ route('heroes.destroy', $hero->id) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button onclick="return confirm('Confermi di voler eliminare?')" type="submit">{{ __('crud.delete') }}</button>
                                                 </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                         @endforeach
