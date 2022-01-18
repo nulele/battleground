@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HeroRequest;
 use App\Models\Clan;
 use App\Models\Hero;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -48,10 +49,12 @@ class HeroController extends Controller
             abort(403);
         }
 
+        $users = User::query()->where('admin', false)->orderBy('name')->get();
         $clans = Clan::query()->orderBy('name')->get();
 
         return view('heroes.create', [
             'clans' => $clans,
+            'users' => $users,
         ]);
     }
 
@@ -64,6 +67,7 @@ class HeroController extends Controller
     public function store(HeroRequest $request)
     {
         $hero = Hero::query()->create([
+            'user_id' => $request->user_id,
             'clan_id' => $request->clan_id,
             'name' => $request->name,
             'energy' => $request->energy,
@@ -111,11 +115,13 @@ class HeroController extends Controller
             abort(403);
         }
 
+        $users = User::query()->where('admin', false)->orderBy('name')->get();
         $clans = Clan::query()->orderBy('name')->get();
 
         return view('heroes.edit', [
             'hero' => $hero,
             'clans' => $clans,
+            'users' => $users,
         ]);
     }
 
@@ -136,6 +142,7 @@ class HeroController extends Controller
         }
 
         $hero->update([
+            'user_id' => $request->user_id,
             'clan_id' => $request->clan_id,
             'name' => $request->name,
             'energy' => $request->energy,

@@ -37,6 +37,16 @@
                                         @method('PUT')
 
                                         <div>
+                                            <label>{{ __('heroes.user') }}</label>
+                                            <select name="user_id">
+                                                <option value="">- Seleziona un valore -</option>
+                                                @foreach($users as $user)
+                                                    <option value="{{ $user->id }}" {{ old('user_id', $user->clan_id) == $user->id ? 'selected' : null }}>{{ $user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div>
                                             <label>{{ __('heroes.clan') }}</label>
                                             <select name="clan_id">
                                                 <option value="">- Seleziona un valore -</option>

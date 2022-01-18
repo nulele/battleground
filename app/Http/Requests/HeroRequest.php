@@ -24,6 +24,8 @@ class HeroRequest extends FormRequest
     public function rules()
     {
         return [
+            'user_id' => 'required',
+            'clan_id' => 'required',
             'name' => 'required|max:255',
             'energy' => 'required|numeric|min:2|max:10',
             'attack' => 'required|numeric|min:2|max:10',
@@ -44,6 +46,8 @@ class HeroRequest extends FormRequest
     public function attributes()
     {
         return [
+            'user_id' => 'Utente',
+            'clan_id' => 'Clan',
             'name' => 'Nome',
             'energy' => 'Energia',
             'attack' => 'Attacco',

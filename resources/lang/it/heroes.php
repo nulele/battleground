@@ -15,5 +15,6 @@ return [
     'energy'    => 'Energia',
     'attack'    => 'Attacco',
     'defense'   => 'Difesa',
+    'user'      => 'Utente',
     'clan'      => 'Clan',
 ];

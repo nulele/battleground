@@ -37,6 +37,10 @@
                                             <th class="p-2" width="400px">
                                                 <a href="{{ route('heroes.index', ['sort' => 'heroes.name', 'direction' => $direction]) }}">{{ __('heroes.name') }}</a>
                                             </th>
+                                        <tr>
+                                            <th class="p-2">
+                                                <a href="{{ route('heroes.index', ['sort' => 'heroes.user_id', 'direction' => $direction]) }}">{{ __('heroes.user') }}</a>
+                                            </th>
 {{--                                            <th class="p-2" >--}}
 {{--                                                <a href="{{ route('heroes.index', ['sort' => 'clans.name', 'direction' => $direction]) }}">{{ __('heroes.clan') }}</a>--}}
 {{--                                            </th>--}}
@@ -63,6 +67,9 @@
 {{--                                            <td class="p-2 text-center">--}}
 {{--                                                {{ $hero->clan ? $hero->clan->name : null }}--}}
 {{--                                            </td>--}}
+                                            <td class="p-2 text-center">
+                                                {{ $hero->user ? $hero->user->name : null }}
+                                            </td>
                                             <td class="p-2 text-center">
                                                 {{ $hero->energy }}
                                             </td>
