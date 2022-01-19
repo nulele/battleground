@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('heroes', HeroController::class)->parameters([
         'hero' => 'id'
     ]);
+    Route::post('heroes/{hero}/send-email', [HeroController::class, 'sendEmail'])->name('heroes.send.email');
 
     Route::resource('clans', ClanController::class)->parameters([
         'clan' => 'id'

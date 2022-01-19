@@ -170,4 +170,9 @@ class HeroController extends Controller
             'message' => 'Eroe eliminato',
         ]);
     }
+
+    public function sendEmail(Hero $hero)
+    {
+        dd($hero->toArray());
+    }
 }

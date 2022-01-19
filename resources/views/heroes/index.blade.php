@@ -87,6 +87,10 @@
                                                     @method('DELETE')
                                                     <button onclick="return confirm('Confermi di voler eliminare?')" type="submit">{{ __('crud.delete') }}</button>
                                                 </form>
+                                                <form class="inline-flex" method="POST" action="{{ route('heroes.send.email', $hero->id) }}">
+                                                    @csrf
+                                                    <button onclick="return confirm('Confermi di voler inviare l\'email?')" type="submit">{{ __('crud.send_email') }}</button>
+                                                </form>
                                                 @endcan
                                             </td>
                                         </tr>

@@ -14,5 +14,6 @@ return [
     'create'    => 'Crea',
     'edit'      => 'Modifica',
     'delete'    => 'Elimina',
+    'send_email'=> 'Invia email',
     'actions'   => 'Azioni',
 ];
