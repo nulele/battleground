@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HeroRequest;
+use App\Mail\HeroCreated;
 use App\Models\Clan;
 use App\Models\Hero;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class HeroController extends Controller
 {
@@ -173,6 +175,11 @@ class HeroController extends Controller
 
     public function sendEmail(Hero $hero)
     {
-        dd($hero->toArray());
+        Mail::to($hero->user->email)->send(new HeroCreated($hero));
+
+        return redirect()->route('heroes.index')->with([
+            'status' => 'success',
+            'message' => 'Email inviata correttamente',
+        ]);
     }
 }
