@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\HeroWon;
 use App\Models\Hero;
 use Illuminate\Http\Request;
 
@@ -78,9 +79,11 @@ class ArenaController extends Controller
     private function setWinner($hero1_current_energy, $hero2_current_energy, $hero2, $hero1)
     {
         if($hero1_current_energy == 0) {
+            HeroWon::dispatch($hero2);
             return $hero2->fullname;
         }
         if($hero2_current_energy == 0) {
+            HeroWon::dispatch($hero1);
             return $hero1->fullname;
         }
         return null;
