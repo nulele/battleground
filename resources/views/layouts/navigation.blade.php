@@ -16,15 +16,18 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if (auth()->user()->can('viewAny', \App\Models\Hero::class))
-                    <x-nav-link :href="route('heroes.index')" :active="request()->routeIs('heroes')">
+                    <x-nav-link :href="route('heroes.index')" :active="request()->routeIs('heroes.index')">
                         {{ __('heroes.heroes') }}
                     </x-nav-link>
                     @endif
                     @can('viewAny', \App\Models\Clan::class)
-                    <x-nav-link :href="route('clans.index')" :active="request()->routeIs('clans')">
+                    <x-nav-link :href="route('clans.index')" :active="request()->routeIs('clans.index')">
                         {{ __('clans.clans') }}
                     </x-nav-link>
                     @endcan
+                    <x-nav-link :href="route('arena.select')" :active="request()->routeIs('arena.select')">
+                        {{ __('arena.arena') }}
+                    </x-nav-link>
                 </div>
             </div>
 

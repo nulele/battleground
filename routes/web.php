@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\ClanController;
+use App\Http\Controllers\ArenaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('clans', ClanController::class)->parameters([
         'clan' => 'id'
     ]);
+
+    Route::get('arena', [ArenaController::class, 'select'])->name('arena.select');
+    Route::get('arena/{hero1}/{hero2}', [ArenaController::class, 'fight'])->name('arena.fight');
 });
 
 require __DIR__.'/auth.php';
