@@ -37,7 +37,8 @@ Route::middleware(['auth'])->group(function () {
     ]);
 
     Route::get('arena', [ArenaController::class, 'select'])->name('arena.select');
-    Route::get('arena/{hero1}/{hero2}', [ArenaController::class, 'fight'])->name('arena.fight');
+    Route::get('arena/fight', [ArenaController::class, 'fight'])->name('arena.fight');
+    Route::get('arena/roll', [ArenaController::class, 'roll'])->name('arena.roll');
 });
 
 require __DIR__.'/auth.php';

@@ -46,7 +46,7 @@
                             </div>
                             <br>
                             <div class="text-center">
-                                <a href="{{ route('arena.fight', [$hero1, $hero2]) }}">FIGHT!</a>
+                                <a href="{{ route('arena.fight') }}">FIGHT!</a>
                             </div>
                         </div>
                     </div>

@@ -26,7 +26,7 @@
                     </x-nav-link>
                     @endcan
                     <x-nav-link :href="route('arena.select')" :active="request()->routeIs('arena.select')">
-                        {{ __('arena.arena') }}
+                        {{ __('Arena') }}
                     </x-nav-link>
                 </div>
             </div>
