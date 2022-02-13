@@ -75,7 +75,7 @@ class Arena
         session([$key => $value]);
     }
 
-    private function declareWinner($hero1_energy = null, $hero2_energy = null)
+    private function declareWinner($hero1_energy, $hero2_energy)
     {
         if($hero1_energy == 0) {
             HeroWon::dispatch($this->hero2);
